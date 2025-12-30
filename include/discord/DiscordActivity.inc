@@ -33,6 +33,6 @@ methodmap DiscordActivity < JSON_Object
 			return;
 
 		this.Cleanup();
-		delete this;
+		//delete this; // Cleanup уже делает delete this
 	}
 }

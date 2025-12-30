@@ -249,7 +249,7 @@ methodmap ThreadMetaData < JSON_Object
 			return;
 
 		this.Cleanup();
-		delete this;
+		//delete this; // Cleanup уже делает delete this
 	}
 }
 
@@ -550,7 +550,7 @@ methodmap DiscordChannel < DiscordObject
 
 	/**
 	* for guild channels: id of the parent category for a channel (each parent category can contain up to 50 channels)
-	* for threads: id of the text channel this thread was created 
+	* for threads: id of the text channel this thread was created
 	*/
 	public bool GetParentID(char[] output, int maxsize)
 	{

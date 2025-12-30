@@ -14,7 +14,7 @@ methodmap DiscordTypeExtension < JSON_Array
 			return;
 
 		this.Cleanup();
-		delete this;
+		//delete this; // Cleanup уже делает delete this
 	}
 }
 
