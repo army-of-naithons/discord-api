@@ -1,22 +1,22 @@
 #include <sourcemod>
-#include <discord>
+#include <discord_smjson>
 
 #pragma tabsize 4;
 #pragma newdecls required;
 #pragma semicolon 1;
 
-#include "discord/Shared.sp"
-#include "discord/Message.sp"
-#include "discord/Reaction.sp"
-#include "discord/User.sp"
-#include "discord/ListenToChannel.sp"
-#include "discord/Channel.sp"
-#include "discord/Guild.sp"
+#include "discord_smjson/Shared.sp"
+#include "discord_smjson/Message.sp"
+#include "discord_smjson/Reaction.sp"
+#include "discord_smjson/User.sp"
+#include "discord_smjson/ListenToChannel.sp"
+#include "discord_smjson/Channel.sp"
+#include "discord_smjson/Guild.sp"
 
 /* https://discord.com/developers/docs/reference#api-versioning-api-versions */
 #define API_VERSION 10
 
-public Plugin myinfo = 
+public Plugin myinfo =
 {
 	name = "Discord API",
 	author = "Nexd @ Eternar",
@@ -36,7 +36,7 @@ public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max
 	CreateNative("DiscordBot.GetGuild", DiscordBot_GetGuild);
 	CreateNative("DiscordBot.GetGuildMember", DiscordBot_GetGuildMember);
 	CreateNative("DiscordBot.GetGuildMemberID", DiscordBot_GetGuildMemberID);
-	
+
 	CreateNative("DiscordBot.GetGuildScheduledEvent", DiscordBot_GetGuildScheduledEvent);
 	CreateNative("DiscordBot.DeleteGuildScheduledEvent", DiscordBot_DeleteGuildScheduledEvent);
 
@@ -83,7 +83,7 @@ public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max
 	CreateNative("DiscordBot.DeleteMessagesBulk", DiscordBot_DeleteMessagesBulk);
 	CreateNative("DiscordBot.DeleteMessage", DiscordBot_DeleteMessage);
 	CreateNative("DiscordBot.DeleteMessageID", DiscordBot_DeleteMessageID);
-	
+
 	CreateNative("DiscordBot.CreateReaction", DiscordBot_CreateReaction);
 	CreateNative("DiscordBot.CreateReactionID", DiscordBot_CreateReactionID);
 
@@ -106,12 +106,12 @@ void SendRequest(DiscordBot bot, const char[] route, JSON_Object json = null, EH
 {
 	if(OnRequestCompletedCb == INVALID_FUNCTION)
 	{
-		OnRequestCompletedCb = OnHTTPRequestComplete; // include/discord/DiscordRequest.inc#L8
+		OnRequestCompletedCb = OnHTTPRequestComplete; // include/discord_smjson/DiscordRequest.inc#L8
 	}
-	
+
 	if(OnDataReceivedCb == INVALID_FUNCTION)
 	{
-		OnDataReceivedCb = OnHTTPDataReceive; // include/discord/DiscordRequest.inc#L10
+		OnDataReceivedCb = OnHTTPDataReceive; // include/discord_smjson/DiscordRequest.inc#L10
 	}
 
 	char szEndpoint[512];
